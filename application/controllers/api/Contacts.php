@@ -19,18 +19,10 @@ class Contacts extends \Restserver\Libraries\REST_Controller
 	public function contacts_get()
 	{
 		$id = $this->get('id');
+		$first_name = $this->get('first_name');
+		$last_name = $this->get('last_name');
 
-		if ($id === NULL) {
-			$result = $this->contact_model->getAllContacts();
-			if ($result) {
-				$this->response($result, \Restserver\Libraries\REST_Controller::HTTP_OK);
-			} else {
-				$this->response([
-					'status' => FALSE,
-					'message' => 'No users were found'
-				], \Restserver\Libraries\REST_Controller::HTTP_NOT_FOUND);
-			}
-		} else {
+		if ($id != NULL) {
 			$id = (int)$id;
 
 			if ($id <= 0) {
@@ -44,6 +36,39 @@ class Contacts extends \Restserver\Libraries\REST_Controller
 				$this->set_response([
 					'status' => FALSE,
 					'message' => 'User could not be found'
+				], \Restserver\Libraries\REST_Controller::HTTP_NOT_FOUND);
+			}
+		} elseif ($first_name != NULL) {
+
+			$result = $this->contact_model->getContactByFirstName($first_name);
+
+			if (!empty($result)) {
+				$this->set_response($result, \Restserver\Libraries\REST_Controller::HTTP_OK);
+			} else {
+				$this->set_response([
+					'status' => FALSE,
+					'message' => 'User could not be found'
+				], \Restserver\Libraries\REST_Controller::HTTP_NOT_FOUND);
+			}
+		} elseif ($last_name != NULL) {
+			$result = $this->contact_model->getContactByLastName($last_name);
+
+			if (!empty($result)) {
+				$this->set_response($result, \Restserver\Libraries\REST_Controller::HTTP_OK);
+			} else {
+				$this->set_response([
+					'status' => FALSE,
+					'message' => 'User could not be found'
+				], \Restserver\Libraries\REST_Controller::HTTP_NOT_FOUND);
+			}
+		} else {
+			$result = $this->contact_model->getAllContacts();
+			if ($result) {
+				$this->response($result, \Restserver\Libraries\REST_Controller::HTTP_OK);
+			} else {
+				$this->response([
+					'status' => FALSE,
+					'message' => 'No users were found'
 				], \Restserver\Libraries\REST_Controller::HTTP_NOT_FOUND);
 			}
 		}
