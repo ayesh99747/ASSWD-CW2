@@ -20,10 +20,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="container-fluid">
 	<div class="row">
 		<nav class="navbar navbar-light bg-light">
+
+			<div class="container">
+				<a class="navbar-brand"
+				   href="<?php echo base_url() ?>Contacts/">
+					<img src="\cw2\assets\logos\Logo.svg" alt="Phonebook Logo" width="100" height="100">
+					Phonebook
+				</a>
+			</div>
+
 			<ul class="nav nav-pills justify-content-end ">
 				<li class="nav-item">
 					<a class="nav-link"
-					   href="<?php echo base_url() ?>changePassword"
+					   href="<?php echo base_url() ?>Contacts/addNewContact"
 					>Add New Contact</a>
 				</li>
 			</ul>
