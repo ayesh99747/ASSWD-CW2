@@ -5,7 +5,7 @@ class ContactList extends CI_Controller
 {
 	public function index()
 	{
-
-		$this->load->view('contacts_page');
+		$data['main_view'] = "contacts_page";
+		$this->load->view('main', $data);
 	}
 }
