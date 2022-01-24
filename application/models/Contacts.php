@@ -15,7 +15,7 @@ class Contacts extends CI_Model
 
 	public function getContactById($id)
 	{
-		$this->db->where('contact_id', $id);
+		$this->db->where('contact_id', $this->db->escape_str($id));
 		$contact = $this->db->get('contacts');
 
 		if ($contact->num_rows() > 0) {
@@ -27,7 +27,7 @@ class Contacts extends CI_Model
 
 	public function getContactByFirstName($first_name)
 	{
-		$this->db->where('first_name', $first_name);
+		$this->db->where('first_name', $this->db->escape_str($first_name));
 		$contact = $this->db->get('contacts');
 
 		if ($contact->num_rows() > 0) {
@@ -39,7 +39,7 @@ class Contacts extends CI_Model
 
 	public function getContactByLastName($last_name)
 	{
-		$this->db->where('last_name', $last_name);
+		$this->db->where('last_name', $this->db->escape_str($last_name));
 		$contact = $this->db->get('contacts');
 
 		if ($contact->num_rows() > 0) {
@@ -52,12 +52,12 @@ class Contacts extends CI_Model
 	public function addNewContact($firstname, $lastname, $countryCode, $contactNumber, $emailAddress, $tag)
 	{
 		$dataArray = array(
-			'first_name' => $firstname,
-			'last_name' => $lastname,
-			'country_code' => $countryCode,
-			'contact_number' => $contactNumber,
-			'email_address' => $emailAddress,
-			'tag' => $tag
+			'first_name' => $this->db->escape_str($firstname),
+			'last_name' => $this->db->escape_str($lastname),
+			'country_code' => $this->db->escape_str($countryCode),
+			'contact_number' => $this->db->escape_str($contactNumber),
+			'email_address' => $this->db->escape_str($emailAddress),
+			'tag' => $this->db->escape_str($tag)
 		);
 		if ($this->db->insert('contacts', $dataArray)) {
 			return $this->db->insert_id();;
@@ -79,12 +79,12 @@ class Contacts extends CI_Model
 	public function updateExistingContact($id, $firstname, $lastname, $countryCode, $contactNumber, $emailAddress, $tag)
 	{
 		$dataArray = array(
-			'first_name' => $firstname,
-			'last_name' => $lastname,
-			'country_code' => $countryCode,
-			'contact_number' => $contactNumber,
-			'email_address' => $emailAddress,
-			'tag' => $tag
+			'first_name' => $this->db->escape_str($firstname),
+			'last_name' => $this->db->escape_str($lastname),
+			'country_code' => $this->db->escape_str($countryCode),
+			'contact_number' => $this->db->escape_str($contactNumber),
+			'email_address' => $this->db->escape_str($emailAddress),
+			'tag' => $this->db->escape_str($tag)
 		);
 		$this->db->where('contact_id', $id);
 		return $this->db->update('contacts', $dataArray);

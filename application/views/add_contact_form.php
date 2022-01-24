@@ -16,7 +16,7 @@
 		</div>
 	<?php endif; ?>
 
-	<?php echo form_open_multipart('Contact/addNewContactVerification',$attributes); ?>
+	<?php echo form_open_multipart('Contact/addNewContact',$attributes); ?>
 
 	<!-- Firstname Input -->
 	<div class="form-group">

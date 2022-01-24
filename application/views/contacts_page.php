@@ -4,6 +4,14 @@
 
 
 		<?php $attributes = array('id' => 'searchByTagForm', 'class' => 'row g-3') ?>
+
+		<?php if ($this->session->flashdata('searchByTagErrors') !== null): ?>
+			<div class="alert alert-danger print-error-msg">
+				<?php echo $this->session->flashdata('searchByTagErrors'); ?>
+				<?php unset($_SESSION['searchByTagErrors']); ?>
+			</div>
+		<?php endif; ?>
+
 		<?php echo form_open('Contact/searchByLastName', $attributes); ?>
 
 		<!-- Lastname Input -->
@@ -39,6 +47,14 @@
 		<?php echo form_close(); ?>
 
 		<?php $attributes = array('id' => 'searchByTagForm', 'class' => 'row g-3') ?>
+
+		<?php if ($this->session->flashdata('searchByLastNameErrors') !== null): ?>
+			<div class="alert alert-danger print-error-msg">
+				<?php echo $this->session->flashdata('searchByLastNameErrors'); ?>
+				<?php unset($_SESSION['searchByLastNameErrors']); ?>
+			</div>
+		<?php endif; ?>
+
 		<?php echo form_open('Contact/searchByTag', $attributes); ?>
 
 		<!-- Tag Selection -->

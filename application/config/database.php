@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	/*'hostname' => 'localhost',
+/*	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'contacts_db'*/
+	'database' => 'contacts_db',*/
 	'hostname' => 'phpmyadmin.ecs.westminster.ac.uk:3306',
 	'username' => 'w1714881',
 	'password' => 'qbwQPukMOrnw',

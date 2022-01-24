@@ -22,14 +22,14 @@ class Contact extends CI_Controller
 	}
 
 	// The following function is used to confirm the registration.
-	public function addNewContactVerification()
+	public function addNewContact()
 	{
 		// Setting the form validations for the signup form.
 		$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|min_length[3]|max_length[64]');
 		$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|min_length[3]|max_length[64]');
 		$this->form_validation->set_rules('countryCode', 'Country Code', 'trim|required|max_length[3]');
-		$this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|required|max_length[10]');
-		$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email|min_length[3]');
+		$this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|required|max_length[10]|is_unique[contacts.contact_number]');
+		$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email|min_length[3]|is_unique[contacts.email_address]');
 		$this->form_validation->set_rules('tag', 'Tag', 'trim|required');
 
 		// Checking if the form_validation couldn't run and outputing the errors
@@ -67,7 +67,7 @@ class Contact extends CI_Controller
 		$this->form_validation->set_rules('tag', 'Tag', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$data = array(
-				'searchErrors' => validation_errors()
+				'searchByTagErrors' => validation_errors()
 			);
 			$this->session->set_flashdata($data);
 			redirect('viewContactsPage', 'refresh');
@@ -85,7 +85,7 @@ class Contact extends CI_Controller
 		$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|min_length[3]|max_length[64]');
 		if ($this->form_validation->run() == FALSE) {
 			$data = array(
-				'searchErrors' => validation_errors()
+				'searchByLastNameErrors' => validation_errors()
 			);
 			$this->session->set_flashdata($data);
 			redirect('viewContactsPage', 'refresh');
