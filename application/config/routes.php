@@ -53,6 +53,9 @@ $route['default_controller'] = 'Contact';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+$route['addition'] = 'Contact/addNewContactForm';
+$route['viewContactsPage'] = 'Contact/index';
 /*
 | -------------------------------------------------------------------------
 | Sample REST API Routes
